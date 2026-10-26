@@ -1,0 +1,620 @@
+{
+  "harness": "api",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "finished_at": "2026-10-26T20:41:03",
+  "versions": {
+    "python": "3.12.6",
+    "anthropic": "2.3.0",
+    "claude-agent-sdk": "0.2.174"
+  },
+  "totals": {
+    "input": 50,
+    "cache_read": 34269,
+    "cache_write": 7214,
+    "output": 3626,
+    "cache_hit_pct": 82.5,
+    "model_calls": 16,
+    "tool_calls": 14,
+    "cost_usd": 0.1156,
+    "seconds": 53.2
+  },
+  "checks_passed": "9/9",
+  "checks": [
+    {
+      "name": "exams_saved",
+      "kind": "state",
+      "passed": true,
+      "detail": "exam dates saved: ['2027-05-02', '2027-05-09']"
+    },
+    {
+      "name": "preferences_saved_to_memory",
+      "kind": "state",
+      "passed": true,
+      "detail": "memory: ['preferred_study_time: evening', 'max_daily_minutes: 120']"
+    },
+    {
+      "name": "sessions_respect_preferences_and_holidays",
+      "kind": "state",
+      "passed": true,
+      "detail": "3 sessions in range, violations: none"
+    },
+    {
+      "name": "external_calendar_used",
+      "kind": "run",
+      "passed": true,
+      "detail": "israel_holidays called in turns [3]"
+    },
+    {
+      "name": "memory_recalled_in_new_session",
+      "kind": "text",
+      "passed": true,
+      "detail": "missing patterns: none"
+    },
+    {
+      "name": "conflicting_request_not_applied_silently",
+      "kind": "state",
+      "passed": true,
+      "detail": "longest session: 120m"
+    },
+    {
+      "name": "contradiction_replaces_memory_without_duplicates",
+      "kind": "state",
+      "passed": true,
+      "detail": "'בוקר|morning': updated=['preferred_study_time'] stale=[]; '180': updated=['max_daily_minutes'] stale=[]"
+    },
+    {
+      "name": "long_morning_session_saved",
+      "kind": "state",
+      "passed": true,
+      "detail": "matching sessions: ['S6 09:00']"
+    },
+    {
+      "name": "no_duplicate_exams_at_end",
+      "kind": "state",
+      "passed": true,
+      "detail": "exam dates saved: ['2027-05-02', '2027-05-09']"
+    }
+  ],
+  "loc": {
+    "loop.py": 23,
+    "tools.py": 33,
+    "history.py": 42,
+    "memory.py": 27,
+    "context.py": 36,
+    "compaction.py": 23,
+    "caching.py": 19,
+    "tokens.py": 34,
+    "harness total": 237,
+    "agent.py + main.py": 125
+  },
+  "extra": {
+    "compactions": 2,
+    "compaction_threshold_tokens": 2500
+  },
+  "turns": [
+    {
+      "session": 1,
+      "turn": 1,
+      "user": "היי! יש לי שני מבחנים בסמסטר: אלגברה לינארית ב-2027-05-02 (נושאים: מטריצות, דטרמיננטות, ערכים עצמיים) ומבני נתונים ב-2027-05-09 (נושאים: עצים, גרפים, ערימות). תוסיף את שניהם לתוכנית.",
+      "answer": "הוספתי את שני המבחנים לתוכנית:\n- **אלגברה לינארית**: 2027-05-02 (מטריצות, דטרמיננטות, ערכים עצמיים)\n- **מבני נתונים**: 2027-05-09 (עצים, גרפים, ערימות)\n\nרוצה שנתכנן גם מפגשי למידה? אם כן, ספר לי באיזה זמן ביום נוח לך ללמוד (בוקר, צהריים או ערב), וכמה דקות לכל היותר ביום.",
+      "tokens": {
+        "input": 6,
+        "cache_read": 1900,
+        "cache_write": 2443,
+        "output": 460
+      },
+      "model_calls": 2,
+      "cost_usd": 0.021819,
+      "tools": [
+        "add_exam",
+        "add_exam"
+      ],
+      "compacted": false,
+      "seconds": 6.74,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [],
+        "memory": {}
+      }
+    },
+    {
+      "session": 1,
+      "turn": 2,
+      "user": "חשוב שתזכור עליי גם לפעמים הבאות: הכי טוב לי ללמוד בערב, ולא יותר משעתיים (120 דקות) ביום.",
+      "answer": "שמרתי את ההעדפות שלך: לומדים בערב (מ-17:00 ואילך) ולא יותר מ-120 דקות ביום. ככה אתכנן את המפגשים מעכשיו. רוצה שנתחיל לקבוע מפגשי למידה?",
+      "tokens": {
+        "input": 6,
+        "cache_read": 5212,
+        "cache_write": 552,
+        "output": 246
+      },
+      "model_calls": 2,
+      "cost_usd": 0.008746,
+      "tools": [
+        "remember",
+        "remember"
+      ],
+      "compacted": false,
+      "seconds": 4.11,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 1,
+      "turn": 3,
+      "user": "תקבע לי 3 מפגשי לימוד לאלגברה בין 2027-04-18 ל-2027-04-24. לפני זה תבדוק בלוח השנה אם יש חגים בטווח הזה, ותדלג על ימי חג.",
+      "answer": "בדקתי בלוח השנה: 21–24.4 הם ערב פסח וימי פסח, ולכן דילגתי עליהם. קבעתי 3 מפגשים לאלגברה לינארית, כל אחד בערב ובאורך 120 דקות, כדי לא לעבור את המקסימום היומי שלך:\n- 18.4, 18:00–20:00: מטריצות\n- 19.4, 18:00–20:00: דטרמיננטות\n- 20.4, 18:00–20:00: ערכים עצמיים",
+      "tokens": {
+        "input": 12,
+        "cache_read": 9236,
+        "cache_write": 1580,
+        "output": 1094
+      },
+      "model_calls": 4,
+      "cost_usd": 0.031675,
+      "tools": [
+        "israel_holidays",
+        "schedule_study",
+        "schedule_study",
+        "schedule_study"
+      ],
+      "compacted": true,
+      "seconds": 14.29,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "matrices"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "determinants"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "eigenvalues"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 4,
+      "user": "היי, חזרתי. תזכיר לי: מתי ביום הכי טוב לי ללמוד, ומה המגבלה היומית שלי?",
+      "answer": "היי, ברוך שובך! לפי מה ששמרתי, הכי טוב לך ללמוד בערב (התחלה מ-17:00 ואילך), והמגבלה היומית שלך היא 120 דקות. רוצה לשנות משהו או לתכנן עוד מפגשים לקראת המבחן באלגברה לינארית ב-2.5?",
+      "tokens": {
+        "input": 4,
+        "cache_read": 1676,
+        "cache_write": 212,
+        "output": 128
+      },
+      "model_calls": 1,
+      "cost_usd": 0.003971,
+      "tools": [],
+      "compacted": false,
+      "seconds": 3.28,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "matrices"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "determinants"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "eigenvalues"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 5,
+      "user": "תקבע לי מפגש של 3 שעות למבני נתונים ב-2027-05-05.",
+      "answer": "זה מתנגש עם המגבלה היומית שלך: 3 שעות הן 180 דקות, והמגבלה ששמרתי היא 120 דקות ביום. איך תרצה להמשיך? אפשר להעלות את המגבלה ל-180 דקות, או לקבוע מפגש ערב של 120 דקות ב-5.5 ואת השעה שנשארה ביום אחר.",
+      "tokens": {
+        "input": 4,
+        "cache_read": 1888,
+        "cache_write": 164,
+        "output": 191
+      },
+      "model_calls": 1,
+      "cost_usd": 0.005034,
+      "tools": [],
+      "compacted": false,
+      "seconds": 3.63,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "matrices"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "determinants"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "eigenvalues"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 6,
+      "user": "צודק. אז מעכשיו: הכי טוב לי ללמוד בבוקר, ומותר עד 3 שעות (180 דקות) ביום. תעדכן את מה ששמרת ותקבע את המפגש הזה בבוקר.",
+      "answer": "עדכנתי את ההעדפות: מעכשיו בוקר ועד 180 דקות ביום. קבעתי מבני נתונים ב-5.5 בשעה 09:00 ל-180 דקות. זה כל הזמן של היום, ואין חג בתאריך הזה.\n\nשלושת המפגשים לאלגברה לינארית ב-18–20.4 עדיין קבועים ל-18:00 בערב. אין לי כלי שמשנה או מוחק מפגשים, אז לא אוכל להעביר אותם לבוקר. אם תרצה, אוכל לקבוע להם מפגשי בוקר נוספים.",
+      "tokens": {
+        "input": 8,
+        "cache_read": 7302,
+        "cache_write": 1027,
+        "output": 657
+      },
+      "model_calls": 3,
+      "cost_usd": 0.019767,
+      "tools": [
+        "remember",
+        "remember",
+        "israel_holidays",
+        "list_plan",
+        "schedule_study"
+      ],
+      "compacted": false,
+      "seconds": 8.82,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "matrices"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "determinants"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "eigenvalues"
+          },
+          {
+            "id": "S6",
+            "course": "מבני נתונים",
+            "date": "2027-05-05",
+            "start": "09:00",
+            "minutes": 180,
+            "topic": ""
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "morning",
+            "previous": [
+              "evening"
+            ]
+          },
+          "max_daily_minutes": {
+            "value": "180",
+            "previous": [
+              "120"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 7,
+      "user": "תראה לי בקצרה את כל התוכנית עד המבחן במבני נתונים.",
+      "answer": "זו התוכנית עד המבחן במבני נתונים:\n- **18–20.4**: אלגברה לינארית בשעה 18:00, 120 דק' בכל יום (מטריצות, דטרמיננטות, ערכים עצמיים)\n- **2.5**: מבחן באלגברה לינארית\n- **5.5**: מבני נתונים בשעה 09:00, 180 דק'\n- **9.5**: מבחן במבני נתונים (עצים, גרפים, ערימות)\n\nשלושת המפגשים באלגברה עדיין בערב, למרות שעברת להעדיף בוקר. אין לי אפשרות להזיז או למחוק אותם, אבל אני יכול להוסיף במקומם מפגשי בוקר. לקבוע?",
+      "tokens": {
+        "input": 10,
+        "cache_read": 7055,
+        "cache_write": 1236,
+        "output": 850
+      },
+      "model_calls": 3,
+      "cost_usd": 0.024631,
+      "tools": [
+        "list_plan"
+      ],
+      "compacted": true,
+      "seconds": 12.29,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "matrices"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "determinants"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "eigenvalues"
+          },
+          {
+            "id": "S6",
+            "course": "מבני נתונים",
+            "date": "2027-05-05",
+            "start": "09:00",
+            "minutes": 180,
+            "topic": ""
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "morning",
+            "previous": [
+              "evening"
+            ]
+          },
+          "max_daily_minutes": {
+            "value": "180",
+            "previous": [
+              "120"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

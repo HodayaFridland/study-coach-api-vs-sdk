@@ -1,0 +1,104 @@
+{
+  "name": "Study Coach: two sessions, a preference that changes, Passover in the way",
+  "today": "2027-03-14",
+  "api": {
+    "compaction_threshold_tokens": 2500,
+    "note": "Deliberately low (the code default is 50,000) so the API harness's compaction.py really runs in this short scenario."
+  },
+  "sessions": [
+    {
+      "id": 1,
+      "turns": [
+        "היי! יש לי שני מבחנים בסמסטר: אלגברה לינארית ב-2027-05-02 (נושאים: מטריצות, דטרמיננטות, ערכים עצמיים) ומבני נתונים ב-2027-05-09 (נושאים: עצים, גרפים, ערימות). תוסיף את שניהם לתוכנית.",
+        "חשוב שתזכור עליי גם לפעמים הבאות: הכי טוב לי ללמוד בערב, ולא יותר משעתיים (120 דקות) ביום.",
+        "תקבע לי 3 מפגשי לימוד לאלגברה בין 2027-04-18 ל-2027-04-24. לפני זה תבדוק בלוח השנה אם יש חגים בטווח הזה, ותדלג על ימי חג."
+      ]
+    },
+    {
+      "id": 2,
+      "resume_previous": false,
+      "turns": [
+        "היי, חזרתי. תזכיר לי: מתי ביום הכי טוב לי ללמוד, ומה המגבלה היומית שלי?",
+        "תקבע לי מפגש של 3 שעות למבני נתונים ב-2027-05-05.",
+        "צודק. אז מעכשיו: הכי טוב לי ללמוד בבוקר, ומותר עד 3 שעות (180 דקות) ביום. תעדכן את מה ששמרת ותקבע את המפגש הזה בבוקר.",
+        "תראה לי בקצרה את כל התוכנית עד המבחן במבני נתונים."
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "exams_saved",
+      "kind": "state",
+      "type": "exam_dates",
+      "after_turn": 1,
+      "dates": ["2027-05-02", "2027-05-09"]
+    },
+    {
+      "name": "preferences_saved_to_memory",
+      "kind": "state",
+      "type": "memory_matches",
+      "after_turn": 2,
+      "patterns": ["ערב|evening", "120"]
+    },
+    {
+      "name": "sessions_respect_preferences_and_holidays",
+      "kind": "state",
+      "type": "sessions_in_range",
+      "after_turn": 3,
+      "course": "אלגברה|algebra",
+      "from": "2027-04-18",
+      "to": "2027-04-24",
+      "min_count": 3,
+      "max_minutes": 120,
+      "start_not_before": "17:00",
+      "forbidden_dates": ["2027-04-21", "2027-04-22", "2027-04-23", "2027-04-24"]
+    },
+    {
+      "name": "external_calendar_used",
+      "kind": "run",
+      "type": "tool_called",
+      "tool": "israel_holidays",
+      "in_session": 1
+    },
+    {
+      "name": "memory_recalled_in_new_session",
+      "kind": "text",
+      "type": "answer_matches",
+      "turn": 4,
+      "patterns": ["ערב|evening", "120|שעתיים|2 שעות"]
+    },
+    {
+      "name": "conflicting_request_not_applied_silently",
+      "kind": "state",
+      "type": "max_session_minutes",
+      "after_turn": 5,
+      "max_minutes": 120
+    },
+    {
+      "name": "contradiction_replaces_memory_without_duplicates",
+      "kind": "state",
+      "type": "memory_superseded",
+      "after_turn": 6,
+      "entries": [
+        {"new": "בוקר|morning", "old": "ערב|evening"},
+        {"new": "180", "old": "120"}
+      ]
+    },
+    {
+      "name": "long_morning_session_saved",
+      "kind": "state",
+      "type": "session_exists",
+      "after_turn": 6,
+      "date": "2027-05-05",
+      "minutes": 180,
+      "start_before": "12:00"
+    },
+    {
+      "name": "no_duplicate_exams_at_end",
+      "kind": "state",
+      "type": "exam_dates",
+      "dates": ["2027-05-02", "2027-05-09"],
+      "exact": true
+    }
+  ]
+}

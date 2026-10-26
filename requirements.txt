@@ -1,0 +1,4 @@
+# Pinned so both versions always run on the same libraries (full lock: requirements.lock.txt)
+anthropic==2.3.0
+claude-agent-sdk==0.2.174
+pytest==9.1.1

@@ -1,0 +1,704 @@
+{
+  "harness": "sdk",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "finished_at": "2026-10-26T18:53:02",
+  "versions": {
+    "python": "3.12.6",
+    "anthropic": "2.3.0",
+    "claude-agent-sdk": "0.2.174"
+  },
+  "totals": {
+    "input": 38,
+    "cache_read": 45621,
+    "cache_write": 3577,
+    "output": 2856,
+    "cache_hit_pct": 92.7,
+    "model_calls": 14,
+    "tool_calls": 14,
+    "cost_usd": 0.0954,
+    "seconds": 65.0
+  },
+  "checks_passed": "9/9",
+  "checks": [
+    {
+      "name": "exams_saved",
+      "kind": "state",
+      "passed": true,
+      "detail": "exam dates saved: ['2027-05-02', '2027-05-09']"
+    },
+    {
+      "name": "preferences_saved_to_memory",
+      "kind": "state",
+      "passed": true,
+      "detail": "memory: ['preferred_study_time: evening', 'max_daily_minutes: 120']"
+    },
+    {
+      "name": "sessions_respect_preferences_and_holidays",
+      "kind": "state",
+      "passed": true,
+      "detail": "3 sessions in range, violations: none"
+    },
+    {
+      "name": "external_calendar_used",
+      "kind": "run",
+      "passed": true,
+      "detail": "israel_holidays called in turns [3]"
+    },
+    {
+      "name": "memory_recalled_in_new_session",
+      "kind": "text",
+      "passed": true,
+      "detail": "missing patterns: none"
+    },
+    {
+      "name": "conflicting_request_not_applied_silently",
+      "kind": "state",
+      "passed": true,
+      "detail": "longest session: 120m"
+    },
+    {
+      "name": "contradiction_replaces_memory_without_duplicates",
+      "kind": "state",
+      "passed": true,
+      "detail": "'בוקר|morning': updated=['preferred_study_time'] stale=[]; '180': updated=['max_daily_minutes'] stale=[]"
+    },
+    {
+      "name": "long_morning_session_saved",
+      "kind": "state",
+      "passed": true,
+      "detail": "matching sessions: ['S6 09:00']"
+    },
+    {
+      "name": "no_duplicate_exams_at_end",
+      "kind": "state",
+      "passed": true,
+      "detail": "exam dates saved: ['2027-05-02', '2027-05-09']"
+    }
+  ],
+  "loc": {
+    "context.py": 2,
+    "memory.py": 8,
+    "tools.py": 17,
+    "history.py": 2,
+    "loop.py": 2,
+    "tokens.py": 8,
+    "SDK total (agent.py + tools.py + main.py)": 181
+  },
+  "extra": {
+    "sessions": [
+      {
+        "session": 1,
+        "session_id": "1311b426-8d59-4e7a-8098-c0b27e9741d0",
+        "model_usage": {
+          "claude-haiku-5-5": {
+            "inputTokens": 1290,
+            "outputTokens": 272,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.000265,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 128000,
+            "thinkingTokens": 241,
+            "canonicalModel": "claude-haiku-5-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          },
+          "claude-opus-5-5": {
+            "inputTokens": 18,
+            "outputTokens": 1578,
+            "cacheReadInputTokens": 23401,
+            "cacheCreationInputTokens": 1697,
+            "webSearchRequests": 0,
+            "costUSD": 0.04988820000000001,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 128000,
+            "thinkingTokens": 100,
+            "canonicalModel": "claude-opus-5-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          }
+        }
+      },
+      {
+        "session": 2,
+        "session_id": "6d279064-123a-431e-a4c6-00b32ad743db",
+        "model_usage": {
+          "claude-haiku-5-5": {
+            "inputTokens": 1216,
+            "outputTokens": 32,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.0001376,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 128000,
+            "thinkingTokens": 0,
+            "canonicalModel": "claude-haiku-5-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          },
+          "claude-opus-5-5": {
+            "inputTokens": 20,
+            "outputTokens": 1278,
+            "cacheReadInputTokens": 22220,
+            "cacheCreationInputTokens": 1880,
+            "webSearchRequests": 0,
+            "costUSD": 0.045124,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 128000,
+            "thinkingTokens": 151,
+            "canonicalModel": "claude-opus-5-5",
+            "provider": "firstParty",
+            "costBasis": "list"
+          }
+        }
+      }
+    ]
+  },
+  "turns": [
+    {
+      "session": 1,
+      "turn": 1,
+      "user": "היי! יש לי שני מבחנים בסמסטר: אלגברה לינארית ב-2027-05-02 (נושאים: מטריצות, דטרמיננטות, ערכים עצמיים) ומבני נתונים ב-2027-05-09 (נושאים: עצים, גרפים, ערימות). תוסיף את שניהם לתוכנית.",
+      "answer": "הוספתי את שני המבחנים לתוכנית:\n- **אלגברה לינארית**, 2027-05-02: מטריצות, דטרמיננטות, ערכים עצמיים\n- **מבני נתונים**, 2027-05-09: עצים, גרפים, ערימות\n\nרוצה שאבנה לך עכשיו לוח זמנים ללמידה לקראתם?",
+      "tokens": {
+        "input": 4,
+        "cache_read": 5645,
+        "cache_write": 0,
+        "output": 396
+      },
+      "cache_write_1h": 0,
+      "model_calls": 2,
+      "side_model_calls": {
+        "claude-haiku-5-5": {
+          "input": 1290,
+          "output": 272,
+          "cost_usd": 0.000265
+        }
+      },
+      "cost_usd": 0.00933,
+      "tools": [
+        "add_exam",
+        "add_exam"
+      ],
+      "seconds": 6.62,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [],
+        "memory": {}
+      }
+    },
+    {
+      "session": 1,
+      "turn": 2,
+      "user": "חשוב שתזכור עליי גם לפעמים הבאות: הכי טוב לי ללמוד בערב, ולא יותר משעתיים (120 דקות) ביום.",
+      "answer": "שמרתי את ההעדפות שלך גם לפעמים הבאות: **ללמוד בערב** (התחלה מ-17:00 ואילך) ו**עד 120 דקות ביום**. מעכשיו כל מפגש שאקבע יעמוד בהן.",
+      "tokens": {
+        "input": 6,
+        "cache_read": 6411,
+        "cache_write": 451,
+        "output": 255
+      },
+      "cache_write_1h": 451,
+      "model_calls": 2,
+      "side_model_calls": {},
+      "cost_usd": 0.010014,
+      "tools": [
+        "remember",
+        "remember"
+      ],
+      "seconds": 6.14,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 1,
+      "turn": 3,
+      "user": "תקבע לי 3 מפגשי לימוד לאלגברה בין 2027-04-18 ל-2027-04-24. לפני זה תבדוק בלוח השנה אם יש חגים בטווח הזה, ותדלג על ימי חג.",
+      "answer": "קבעתי 3 מפגשים לאלגברה לינארית. לוח השנה מסמן את 21–24 באפריל (ערב פסח ופסח) כימי חג, אז דילגתי עליהם:\n- **ראשון 18.4**, 18:00, 120 דק': מטריצות\n- **שני 19.4**, 18:00, 120 דק': דטרמיננטות\n- **שלישי 20.4**, 18:00, 120 דק': ערכים עצמיים\n\nכל המפגשים בערב, ואף יום לא עובר את 120 הדקות.",
+      "tokens": {
+        "input": 8,
+        "cache_read": 11345,
+        "cache_write": 1246,
+        "output": 927
+      },
+      "cache_write_1h": 1246,
+      "model_calls": 3,
+      "side_model_calls": {},
+      "cost_usd": 0.030809,
+      "tools": [
+        "israel_holidays",
+        "list_plan",
+        "schedule_study",
+        "schedule_study",
+        "schedule_study"
+      ],
+      "seconds": 12.71,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "מטריצות"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "דטרמיננטות"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "ערכים עצמיים"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 4,
+      "user": "היי, חזרתי. תזכיר לי: מתי ביום הכי טוב לי ללמוד, ומה המגבלה היומית שלי?",
+      "answer": "ברוך שובך! לפי ההעדפות השמורות שלך:\n- **זמן הלמידה המועדף:** ערב (מתחילים ב-17:00 או אחר כך)\n- **מגבלה יומית:** עד 120 דקות ביום\n\nרוצה שנתכנן יחד את מפגשי הלמידה הבאים?",
+      "tokens": {
+        "input": 2,
+        "cache_read": 2671,
+        "cache_write": 0,
+        "output": 121
+      },
+      "cache_write_1h": 0,
+      "model_calls": 1,
+      "side_model_calls": {
+        "claude-haiku-5-5": {
+          "input": 1216,
+          "output": 32,
+          "cost_usd": 0.000138
+        }
+      },
+      "cost_usd": 0.0031,
+      "tools": [],
+      "seconds": 5.13,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "מטריצות"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "דטרמיננטות"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "ערכים עצמיים"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 5,
+      "user": "תקבע לי מפגש של 3 שעות למבני נתונים ב-2027-05-05.",
+      "answer": "שים לב: 3 שעות (180 דקות) חורגות מהמגבלה היומית השמורה שלך, 120 דקות.\n\nמה מתאים לך?\n1. לקבוע מפגש של 120 דקות בערב (למשל 18:00) ולפזר את השעה שנשארה על יום אחר\n2. לעדכן את המגבלה היומית ל-180 דקות לפחות ולקבוע את כל 3 השעות ברצף",
+      "tokens": {
+        "input": 4,
+        "cache_read": 2314,
+        "cache_write": 513,
+        "output": 215
+      },
+      "cache_write_1h": 513,
+      "model_calls": 1,
+      "side_model_calls": {},
+      "cost_usd": 0.008883,
+      "tools": [],
+      "seconds": 10.0,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "מטריצות"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "דטרמיננטות"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "ערכים עצמיים"
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "evening",
+            "previous": []
+          },
+          "max_daily_minutes": {
+            "value": "120",
+            "previous": []
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 6,
+      "user": "צודק. אז מעכשיו: הכי טוב לי ללמוד בבוקר, ומותר עד 3 שעות (180 דקות) ביום. תעדכן את מה ששמרת ותקבע את המפגש הזה בבוקר.",
+      "answer": "עדכנתי את ההעדפות וקבעתי את המפגש:\n- **זמן למידה מועדף:** בוקר (במקום ערב)\n- **מגבלה יומית:** 180 דקות (במקום 120)\n- **המפגש:** מבני נתונים, 2027-05-05, 09:00–12:00 (180 דקות). אין חג בתאריך הזה, וכבר הגעת למגבלה של היום הזה.",
+      "tokens": {
+        "input": 8,
+        "cache_read": 9543,
+        "cache_write": 925,
+        "output": 580
+      },
+      "cache_write_1h": 925,
+      "model_calls": 3,
+      "side_model_calls": {},
+      "cost_usd": 0.020941,
+      "tools": [
+        "remember",
+        "remember",
+        "israel_holidays",
+        "schedule_study"
+      ],
+      "seconds": 14.42,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "מטריצות"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "דטרמיננטות"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "ערכים עצמיים"
+          },
+          {
+            "id": "S6",
+            "course": "מבני נתונים",
+            "date": "2027-05-05",
+            "start": "09:00",
+            "minutes": 180,
+            "topic": ""
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "morning",
+            "previous": [
+              "evening"
+            ]
+          },
+          "max_daily_minutes": {
+            "value": "180",
+            "previous": [
+              "120"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "session": 2,
+      "turn": 7,
+      "user": "תראה לי בקצרה את כל התוכנית עד המבחן במבני נתונים.",
+      "answer": "זו התוכנית עד המבחן במבני נתונים:\n\n- **18.4–20.4.2027:** שלושה מפגשים באלגברה לינארית (מטריצות, דטרמיננטות, ערכים עצמיים), כל אחד ב-18:00 למשך 120 דקות\n- **2.5.2027:** מבחן באלגברה לינארית\n- **5.5.2027:** מבני נתונים, 09:00, 180 דקות\n- **9.5.2027:** מבחן במבני נתונים (עצים, גרפים, ערימות)\n\nהמפגשים באלגברה נקבעו בערב, לפני שעברת להעדפת בוקר. רוצה שאעביר אותם לבוקר? אפשר גם להוסיף מפגשים במבני נתונים לכל נושא לפני המבחן.",
+      "tokens": {
+        "input": 6,
+        "cache_read": 7692,
+        "cache_write": 442,
+        "output": 362
+      },
+      "cache_write_1h": 442,
+      "model_calls": 2,
+      "side_model_calls": {},
+      "cost_usd": 0.012338,
+      "tools": [
+        "list_plan"
+      ],
+      "seconds": 10.0,
+      "state": {
+        "exams": [
+          {
+            "id": "E1",
+            "course": "אלגברה לינארית",
+            "date": "2027-05-02",
+            "topics": [
+              "מטריצות",
+              "דטרמיננטות",
+              "ערכים עצמיים"
+            ]
+          },
+          {
+            "id": "E2",
+            "course": "מבני נתונים",
+            "date": "2027-05-09",
+            "topics": [
+              "עצים",
+              "גרפים",
+              "ערימות"
+            ]
+          }
+        ],
+        "sessions": [
+          {
+            "id": "S3",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-18",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "מטריצות"
+          },
+          {
+            "id": "S4",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-19",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "דטרמיננטות"
+          },
+          {
+            "id": "S5",
+            "course": "אלגברה לינארית",
+            "date": "2027-04-20",
+            "start": "18:00",
+            "minutes": 120,
+            "topic": "ערכים עצמיים"
+          },
+          {
+            "id": "S6",
+            "course": "מבני נתונים",
+            "date": "2027-05-05",
+            "start": "09:00",
+            "minutes": 180,
+            "topic": ""
+          }
+        ],
+        "memory": {
+          "preferred_study_time": {
+            "value": "morning",
+            "previous": [
+              "evening"
+            ]
+          },
+          "max_daily_minutes": {
+            "value": "180",
+            "previous": [
+              "120"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
